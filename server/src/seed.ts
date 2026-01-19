@@ -3,10 +3,10 @@ import { prisma } from './prisma.js';
 
 async function main() {
   const owners = [
-    { name: 'Aisha Khan', email: 'aisha.khan@healf.com' },
-    { name: 'Omar Ali', email: 'omar.ali@healf.com' },
-    { name: 'Sophia Chen', email: 'sophia.chen@healf.com' },
-    { name: 'Daniel Smith', email: 'daniel.smith@healf.com' }
+    { name: 'Abdul Rehman', email: 'ar@test.com' },
+    { name: 'Ayesha Rehman', email: 'ayesha.rehman@test.com' },
+    { name: 'Test Name', email: 'test@test.com' },
+    { name: 'David John', email: 'david@test.com' }
   ];
 
   for (const owner of owners) {
