@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+  DISCONTINUED
+}
+
+model ProductOwner {
+  id        String    @id @default(uuid())
+  name      String
+  email     String?
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([name])
+}
+
+model Product {
+  id        String        @id @default(uuid())
+  name      String
+  sku       String        @unique
+  price     Decimal       @db.Decimal(12, 2)
+  inventory Int           @default(0)
+  status    ProductStatus @default(ACTIVE)
+  imageUrl  String?
+
+  ownerId   String
+  owner     ProductOwner  @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([name])
+  @@index([ownerId])
+  @@index([status])
+}
