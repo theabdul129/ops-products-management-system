@@ -1,0 +1,311 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f4f4f4;
+  --foreground: #161616;
+  --card: #ffffff;
+  --card-foreground: #161616;
+  --popover: #ffffff;
+  --popover-foreground: #161616;
+
+  --primary: #0c9762;
+  --primary-foreground: #ffffff;
+  --secondary: #ececec;
+  --secondary-foreground: #2a2a2a;
+  --muted: #ececec;
+  --muted-foreground: #6d6d6d;
+  --accent: #faff7f;
+  --accent-foreground: #232323;
+  --destructive: #df5d64;
+  --destructive-foreground: #ffffff;
+
+  --border: #cbcbcb;
+  --input: #f8f8f8;
+  --ring: #0c9762;
+
+  --chart-1: #0c9762;
+  --chart-2: #3b82f6;
+  --chart-3: #facc15;
+  --chart-4: #14b8a6;
+  --chart-5: #8b5cf6;
+
+  --sidebar: #f7f7f7;
+  --sidebar-foreground: #191919;
+  --sidebar-primary: #0c9762;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(12, 151, 98, 0.08);
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: rgba(17, 17, 17, 0.08);
+  --sidebar-ring: #0c9762;
+
+  --gradient-app:
+    radial-gradient(circle at 10% 10%, rgba(12, 151, 98, 0.25) 0%, rgba(12, 151, 98, 0) 35%),
+    radial-gradient(circle at 90% 15%, rgba(250, 255, 127, 0.35) 0%, rgba(250, 255, 127, 0) 35%),
+    radial-gradient(circle at 50% 50%, rgba(12, 151, 98, 0.15) 0%, rgba(12, 151, 98, 0) 40%),
+    linear-gradient(180deg, #faf8f3 0%, #f4f4f4 42%, #efefef 100%);
+  --gradient-card:
+    radial-gradient(circle at 12% 18%, rgba(12, 151, 98, 0.08) 0%, rgba(12, 151, 98, 0) 42%),
+    radial-gradient(circle at 88% 8%, rgba(250, 255, 127, 0.16) 0%, rgba(250, 255, 127, 0) 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(250, 247, 241, 0.94) 100%);
+  --gradient-sidebar: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 248, 243, 0.96) 100%);
+  --gradient-primary: linear-gradient(135deg, #0c9762 0%, #19b17a 100%);
+  --gradient-primary-soft: linear-gradient(135deg, rgba(12, 151, 98, 0.12) 0%, rgba(250, 255, 127, 0.18) 100%);
+  --gradient-header:
+    radial-gradient(circle at left center, rgba(12, 151, 98, 0.18) 0%, rgba(12, 151, 98, 0) 32%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.56) 0%, rgba(250, 255, 127, 0.12) 100%);
+
+  --shadow-card: 0 14px 34px -24px rgba(17, 17, 17, 0.35);
+  --shadow-elevated: 0 26px 60px -28px rgba(17, 17, 17, 0.42);
+  --shadow-sidebar: 0 24px 48px -36px rgba(17, 17, 17, 0.5);
+  --shadow-primary: 0 16px 32px -20px rgba(12, 151, 98, 0.65);
+
+  --radius: 0.875rem;
+}
+
+.dark {
+  --background: #070816;
+  --foreground: #f4f4f4;
+  --card: #101325;
+  --card-foreground: #f4f4f4;
+  --popover: #12162c;
+  --popover-foreground: #f4f4f4;
+
+  --primary: #0c9762;
+  --primary-foreground: #ffffff;
+  --secondary: #171b32;
+  --secondary-foreground: #ececec;
+  --muted: #101427;
+  --muted-foreground: #9ba3c7;
+  --accent: #faff7f;
+  --accent-foreground: #171717;
+  --destructive: #ef6c74;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(12, 151, 98, 0.16);
+  --input: #13172d;
+  --ring: #0c9762;
+
+  --chart-1: #0c9762;
+  --chart-2: #faff7f;
+  --chart-3: #19b17a;
+  --chart-4: #8f72ff;
+  --chart-5: #efe26b;
+
+  --sidebar: #0d1021;
+  --sidebar-foreground: #f4f4f4;
+  --sidebar-primary: #0c9762;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(250, 255, 127, 0.12);
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: rgba(12, 151, 98, 0.14);
+  --sidebar-ring: #0c9762;
+
+  --gradient-app:
+    radial-gradient(circle at 8% 22%, rgba(12, 151, 98, 0.22) 0%, rgba(12, 151, 98, 0) 35%),
+    radial-gradient(circle at 84% 18%, rgba(250, 255, 127, 0.18) 0%, rgba(250, 255, 127, 0) 35%),
+    radial-gradient(circle at 40% 60%, rgba(12, 151, 98, 0.12) 0%, rgba(12, 151, 98, 0) 40%),
+    linear-gradient(180deg, #070816 0%, #0c1022 42%, #12162c 100%);
+  --gradient-card:
+    radial-gradient(circle at 14% 18%, rgba(12, 151, 98, 0.2) 0%, rgba(12, 151, 98, 0) 40%),
+    radial-gradient(circle at 88% 8%, rgba(250, 255, 127, 0.14) 0%, rgba(250, 255, 127, 0) 34%),
+    linear-gradient(180deg, rgba(17, 20, 40, 0.94) 0%, rgba(11, 14, 28, 0.96) 100%);
+  --gradient-sidebar: linear-gradient(180deg, rgba(12, 15, 31, 0.98) 0%, rgba(7, 8, 22, 0.98) 100%);
+  --gradient-primary: linear-gradient(135deg, #0c9762 0%, #19b17a 50%, #faff7f 100%);
+  --gradient-primary-soft: linear-gradient(135deg, rgba(12, 151, 98, 0.15) 0%, rgba(250, 255, 127, 0.15) 100%);
+  --gradient-header:
+    radial-gradient(circle at left center, rgba(12, 151, 98, 0.2) 0%, rgba(12, 151, 98, 0) 30%),
+    linear-gradient(135deg, rgba(12, 151, 98, 0.12) 0%, rgba(250, 255, 127, 0.1) 100%);
+
+  --shadow-card: 0 18px 38px -26px rgba(0, 0, 0, 0.78);
+  --shadow-elevated: 0 32px 68px -28px rgba(0, 0, 0, 0.85);
+  --shadow-sidebar: 0 26px 60px -34px rgba(0, 0, 0, 0.92);
+  --shadow-primary: 0 18px 34px -18px rgba(12, 151, 98, 0.55);
+}
+
+@theme inline {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    font-variation-settings: "wght" 400;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: var(--gradient-app);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  a,
+  button {
+    @apply cursor-pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  @keyframes ambient-gradient-shift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translate3d(1.5%, -1.5%, 0) scale(1.04);
+      opacity: 0.72;
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.5;
+    }
+  }
+
+  .app-ambient-gradient {
+    z-index: 0;
+    background:
+      radial-gradient(circle at 12% 16%, rgba(12, 151, 98, 0.18), transparent 36%),
+      radial-gradient(circle at 88% 12%, rgba(250, 255, 127, 0.16), transparent 32%),
+      radial-gradient(circle at 52% 74%, rgba(12, 151, 98, 0.12), transparent 40%);
+    animation: ambient-gradient-shift 18s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .dark .app-ambient-gradient {
+    background:
+      radial-gradient(circle at 12% 16%, rgba(12, 151, 98, 0.2), transparent 38%),
+      radial-gradient(circle at 86% 12%, rgba(250, 255, 127, 0.13), transparent 33%),
+      radial-gradient(circle at 50% 74%, rgba(12, 151, 98, 0.1), transparent 42%);
+  }
+
+  .sidebar-cursor-glow {
+    --sidebar-cursor-x: 50%;
+    --sidebar-cursor-y: 20%;
+  }
+
+  .sidebar-cursor-glow-layer {
+    z-index: 3;
+    opacity: 0;
+    background:
+      radial-gradient(
+        circle 120px at var(--sidebar-cursor-x) var(--sidebar-cursor-y),
+        rgba(12, 151, 98, 0.16),
+        rgba(12, 151, 98, 0.06) 38%,
+        transparent 72%
+      ),
+      radial-gradient(
+        circle 88px at calc(var(--sidebar-cursor-x) + 14px) calc(var(--sidebar-cursor-y) - 8px),
+        rgba(250, 255, 127, 0.08),
+        transparent 64%
+      );
+    mix-blend-mode: screen;
+    transition:
+      background-position 120ms linear,
+      opacity 160ms ease;
+  }
+
+  .sidebar-cursor-glow:hover .sidebar-cursor-glow-layer {
+    opacity: 0.48;
+  }
+
+  @media (hover: none) {
+    .sidebar-cursor-glow-layer {
+      display: none;
+    }
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+
+  .card-elevated {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .shadow-sidebar {
+    box-shadow: var(--shadow-sidebar);
+  }
+
+  .shadow-primary-glow {
+    box-shadow: var(--shadow-primary);
+  }
+
+  .sidebar-gradient {
+    background: var(--gradient-sidebar);
+  }
+
+  .btn-primary-gradient {
+    background: var(--gradient-primary);
+  }
+
+  .nav-active-gradient {
+    background: var(--gradient-primary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-ambient-gradient {
+    animation: none;
+  }
+}

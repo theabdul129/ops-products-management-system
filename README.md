@@ -1,97 +1,122 @@
-# Ops Products Management System (Healf)
+# Product Ops Dashboard
 
-Full-stack **Operations Products Management System** with:
+A Next.js product operations dashboard for tracking products, owners, inventory health, and price-focused metrics.
 
-- **Frontend:** React + TypeScript (Vite)
-- **Backend:** Node.js (Express) + TypeScript
-- **Database:** PostgreSQL (relational schema with FK)
-- **ORM:** Prisma (schema + migration SQL included)
+## Stack
 
-## Features
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Prisma
+- PostgreSQL
 
-### Product Management
-- Full CRUD: create, list, details, update, delete
-- Search/filter by: **name/SKU**, owner, status
-- Sorting by: name, price, inventory, createdAt
-- Pagination (server-side)
-- Price + inventory validation (non-negative)
-- Image URL + preview
+## Prerequisites
 
-### Product Owners
-- Owners are constant (seeded/hardcoded: 4)
-- View owners list
-- Each product must belong to an owner
+- Node.js 20+
+- npm
+- PostgreSQL running locally or remotely (see Docker option below)
 
-## Project Structure
+## Setup
 
-```
-ops-products-management-system/
-  client/
-  server/
-  docker-compose.yml
-  README.md
+1. Install dependencies:
+
+```bash
+npm install
 ```
 
-## Local Setup
+2. Create your environment file:
 
-### 1) Start Postgres
+```bash
+# macOS / Linux
+cp .env.example .env
+
+# Windows
+copy .env.example .env
+```
+
+3. Update `DATABASE_URL` in `.env`.
+
+Example from `.env.example`:
+
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/product"
+```
+
+### Option A — Docker (recommended for local dev)
+
+A `docker-compose.yaml` is included that spins up a PostgreSQL 14 container matching the default `DATABASE_URL`:
 
 ```bash
 docker compose up -d
 ```
 
-This creates:
-- DB: `ops_products`
-- User: `postgres`
-- Password: `postgres`
+This starts a `postgres` container on port `5432` with user `postgres`, password `postgres`, and database `product`.
 
-### 2) Backend (Express + Prisma)
+### Option B — Existing PostgreSQL instance
+
+Point `DATABASE_URL` in `.env` at your own instance.
+
+4. Apply the database migrations:
 
 ```bash
-cd server
-cp .env.example .env
-npm install
-npm run prisma:generate
-npm run prisma:migrate
-npm run seed
+npm run db:push
+```
+
+5. Generate the Prisma client:
+
+```bash
+npm run db:generate
+```
+
+6. (Optional) Seed the database with sample data:
+
+```bash
+npm run db:seed
+```
+
+## Run the project
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-Backend runs on:
-- `http://localhost:4000`
-- Health check: `http://localhost:4000/health`
+Open [http://localhost:3000](http://localhost:3000).
 
-### 3) Frontend (React)
+## Useful scripts
 
 ```bash
-cd client
-cp .env.example .env
-npm install
-npm run dev
+npm run dev          # Start development server
+npm run build        # Generate Prisma client + production build
+npm run start        # Start production server
+npm run typecheck    # TypeScript type check (no emit)
+npm run lint         # ESLint (requires pnpm)
+npm run db:generate  # Generate Prisma client
+npm run db:push      # Apply migrations via prisma migrate deploy
+npm run db:seed      # Seed the database
 ```
 
-Frontend runs on:
-- `http://localhost:5173`
+> **Note:** The `lint` script uses `pnpm exec eslint`. If you don't have `pnpm`, install it with `npm i -g pnpm` or run `npx eslint .` directly.
 
-## API Endpoints
+## Notes for new developers
 
-### Owners
-- `GET /api/owners`
+- The app uses `next-themes` for light and dark mode.
+- Prisma schema lives in [prisma/schema.prisma](prisma/schema.prisma).
+- Main dashboard data loaders live in [lib/dashboard.ts](lib/dashboard.ts).
+- Core shell and navigation components live in:
+  - [components/app-shell.tsx](components/app-shell.tsx)
+  - [components/sidebar.tsx](components/sidebar.tsx)
+- Product listing UI lives in:
+  - [app/products/products-content.tsx](app/products/products-content.tsx)
+  - [components/products-table.tsx](components/products-table.tsx)
 
-### Products
-- `GET /api/products?ownerId=&status=&q=&sortBy=&sortOrder=&page=&pageSize=`
-- `GET /api/products/:id`
-- `POST /api/products`
-- `PUT /api/products/:id`
-- `DELETE /api/products/:id`
+## Verification
 
-## Assumptions
-- Product owners are seeded and remain constant (as per assignment)
-- Product image is stored as **imageUrl** (no file upload required)
-- No authentication required
+Before opening a PR, run:
 
-## Notes for Reviewers
-- Input validation via **Zod** in backend + frontend forms
-- Proper HTTP status codes + structured errors
-- Relational integrity enforced in Postgres via FK + constraints
-
+```bash
+npm run typecheck
+npm run build
+```
